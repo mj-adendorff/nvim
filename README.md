@@ -1,0 +1,3 @@
+# Neovim config
+
+Very WIP
