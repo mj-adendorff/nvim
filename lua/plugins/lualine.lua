@@ -3,7 +3,7 @@ return {
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 	lazy = false,
 	config = function()
-		local tr = require("nvim-treesitter")
+		local tr = vim.treesitter
 
 		local function location()
 			return tr.statusline({ type_patterns = { "class" } })
@@ -11,8 +11,8 @@ return {
 
 		-- Lsp server name .
 		local function lsp()
-			local msg = 'No Active Lsp'
-			local buf_ft = vim.api.nvim_get_option_value('filetype', { buf = 0 })
+			local msg = ""
+			local buf_ft = vim.api.nvim_get_option_value("filetype", { buf = 0 })
 			local clients = vim.lsp.get_clients()
 			if next(clients) == nil then
 				return msg
@@ -25,8 +25,6 @@ return {
 			end
 			return msg
 		end
-		-- icon = ' LSP:',
-		-- color = { fg = '#ffffff', gui = 'bold' },
 
 		require("lualine").setup({
 			options = {

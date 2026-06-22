@@ -16,13 +16,13 @@ return {
 		config.shortcut = {
 			{
 				desc = "󰠮  Load Saved Session ",
-				action = "SessionRestore",
+				action = "AutoSession resote",
 				group = "@string",
 				key = "l",
 			},
 			{
 				desc = "󰠮  Search Session ",
-				action = "Autosession search",
+				action = "AutoSession search",
 				group = "@string",
 				key = "s",
 			},

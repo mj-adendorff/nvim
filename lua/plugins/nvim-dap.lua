@@ -5,27 +5,82 @@ return {
 			"nvim-neotest/nvim-nio",
 			"rcarriga/nvim-dap-ui",
 			"mfussenegger/nvim-dap-python",
+			"jay-babu/mason-nvim-dap.nvim",
 			"theHamsta/nvim-dap-virtual-text",
 		},
+		enabled = true,
 		config = function()
 			local dap = require("dap")
 			local dapui = require("dapui")
 			local dap_python = require("dap-python")
+			local mason_dap = require("mason-nvim-dap")
+			local virtual_text = require("nvim-dap-virtual-text")
 
+			mason_dap.setup({
+				ensure_installed = { "cppdbg", "debugpy", "codelldb" },
+				automatic_installation = true,
+				handlers = {
+					function(config)
+						require("mason-nvim-dap").default_setup(config)
+					end,
+				},
+			})
 
-			require("dapui").setup({
+			dap.configurations = {
+				c = {
+					{
+						{
+							name = "Launch file",
+							type = "cppdbg",
+							request = "launch",
+							program = function()
+								return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+							end,
+							cwd = "${workspaceFolder}",
+							stopAtEntry = false,
+							MIMode = "lldb",
+						},
+					},
+				},
+				python = {
+					{
+						type = "python",
+						request = "launch",
+						name = "Launch with emulators",
+						program = "${file}",
+						console = "integratedTerminal",
+						env = {
+							DATASTORE_DATASET = "quicklysign-python3-dev",
+							DATASTORE_EMULATOR_HOST = "localhost:8081",
+							DATASTORE_EMULATOR_HOST_PATH = "localhost:8081/datastore",
+							DATASTORE_HOST = "http://localhost:8081",
+							DATASTORE_PROJECT_ID = "quicklysign-python3-dev",
+						},
+					},
+				},
+			}
+
+			table.insert(dap.configurations.python, {})
+
+			virtual_text.setup({
+				commented = true, -- Show virtual text alongside comment
+			})
+
+			dap_python.setup("python")
+
+			dapui.setup({
 				controls = {
 					enabled = true,
-					element = 'console',
+					element = "console",
 					icons = {
-						pause = '',
-						play = '',
-						step_into = '',
-						step_over = '',
-						step_out = '',
-						step_back = '',
-						run_last = '',
-						terminate = '',
+						pause = "",
+						play = "",
+						step_into = "",
+						step_over = "",
+						step_out = "",
+						step_back = "",
+						run_last = "",
+						terminate = "",
 					},
 				},
 				layouts = {
@@ -33,54 +88,34 @@ return {
 					{
 						elements = {
 							{
-								id = 'watches',
+								id = "watches",
 								size = 0.1,
 							},
 							{
-								id = 'stacks',
+								id = "stacks",
 								size = 0.2,
 							},
 							{
-								id = 'breakpoints',
+								id = "breakpoints",
 								size = 0.2,
 							},
 							{
-								id = 'scopes',
+								id = "scopes",
 								size = 0.5,
 							},
 						},
 						size = 0.15,
-						position = 'left',
+						position = "left",
 					},
 					-- Horizontal bar.
 					{
 						elements = {
-							'console',
+							"console",
 						},
 						size = 0.2,
-						position = 'bottom',
+						position = "bottom",
 					},
 				},
-			})
-			require("nvim-dap-virtual-text").setup({
-				commented = true, -- Show virtual text alongside comment
-			})
-
-			dap_python.setup("python")
-
-			table.insert(dap.configurations.python, {
-				type = "python",
-				request = "launch",
-				name = "Launch with emulators",
-				program = "${file}",
-				console = "integratedTerminal",
-				env = {
-					DATASTORE_DATASET = "quicklysign-python3-dev",
-					DATASTORE_EMULATOR_HOST = "localhost:8081",
-					DATASTORE_EMULATOR_HOST_PATH = "localhost:8081/datastore",
-					DATASTORE_HOST = "http://localhost:8081",
-					DATASTORE_PROJECT_ID = "quicklysign-python3-dev",
-				}
 			})
 
 			dap_python.test_runner = "pytest"

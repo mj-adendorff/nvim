@@ -15,6 +15,12 @@ return {
 		priority = 1000,
 	},
 	{
+		"shatur/neovim-ayu",
+		lazy = false,
+		name = "ayu",
+		priority = 1000,
+	},
+	{
 		"darianmorat/gruvdark.nvim",
 		lazy = false,
 		name = "gruvdark",
@@ -31,6 +37,7 @@ return {
 		name = "catpuccin",
 		lazy = false,
 		priority = 1000,
+		transparent_background = true,
 	},
 	{
 		"nyoom-engineering/oxocarbon.nvim",

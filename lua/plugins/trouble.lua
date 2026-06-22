@@ -23,11 +23,11 @@ return {
 		-- 	"<cmd>Trouble symbols toggle focus=false<cr>",
 		-- 	desc = "Symbols (Trouble)",
 		-- },
-		-- {
-		-- 	"<leader>xd",
-		-- 	"<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
-		-- 	desc = "LSP Definitions / references / ... (Trouble)",
-		-- },
+		{
+			"<leader>xd",
+			"<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
+			desc = "LSP Definitions / references / ... (Trouble)",
+		},
 		-- {
 		-- 	"<leader>xl",
 		-- 	"<cmd>Trouble loclist toggle<cr>",
