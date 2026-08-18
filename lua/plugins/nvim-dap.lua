@@ -85,28 +85,28 @@ return {
 				},
 				layouts = {
 					-- Vertical bar.
-					{
-						elements = {
-							{
-								id = "watches",
-								size = 0.1,
-							},
-							{
-								id = "stacks",
-								size = 0.2,
-							},
-							{
-								id = "breakpoints",
-								size = 0.2,
-							},
-							{
-								id = "scopes",
-								size = 0.5,
-							},
-						},
-						size = 0.15,
-						position = "left",
-					},
+					-- {
+					-- 	elements = {
+					-- 		{
+					-- 			id = "watches",
+					-- 			size = 0.1,
+					-- 		},
+					-- 		{
+					-- 			id = "stacks",
+					-- 			size = 0.2,
+					-- 		},
+					-- 		{
+					-- 			id = "breakpoints",
+					-- 			size = 0.2,
+					-- 		},
+					-- 		{
+					-- 			id = "scopes",
+					-- 			size = 0.5,
+					-- 		},
+					-- 	},
+					-- 	size = 0.15,
+					-- 	position = "left",
+					-- },
 					-- Horizontal bar.
 					{
 						elements = {

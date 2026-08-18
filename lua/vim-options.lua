@@ -10,6 +10,7 @@ vim.cmd("set noexpandtab")
 --vim.cmd("set relativenumber")
 vim.cmd("autocmd FileType python setlocal noexpandtab")
 vim.cmd("set mousescroll=ver:10")
+vim.cmd("set noswapfile")
 
 -- session options
 vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
@@ -18,11 +19,14 @@ vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,
 -- vim.keymap.set({ "n", "v" }, "y", '"+y')
 -- vim.keymap.set({ "n", "v" }, "d", '"_d')
 vim.keymap.set({ "n", "v" }, "c", '"_c')
+vim.keymap.set("n", "q", "<Nop>", { noremap = true, silent = true })
+vim.keymap.set("n", "<F1>", "<Nop>", { noremap = true, silent = true })
 -- vim.keymap.set("x", "p", "P")
 
 -- if using neovide
 if vim.g.neovide then
-	vim.o.guifont = "0xProto Nerd Font Mono:h9"
+	-- vim.o.guifont = "0xProto Nerd Font Mono:h9"
+	vim.o.guifont = "ZedMono Nerd Font Mono"
 	-- vim.o.guifont = "CaskaydiaCove Nerd Font Mono:h10"
 	vim.g.neovide_floating_shadow = true
 	vim.g.neovide_refresh_rate = 140
@@ -37,7 +41,7 @@ if vim.g.neovide then
 	vim.api.nvim_set_keymap("i", "<sc-v>", '<ESC>l"+Pli', { noremap = true })
 	vim.api.nvim_set_keymap("t", "<sc-v>", '<C-\\><C-n>"+Pi', { noremap = true })
 	-- transparency
-	vim.g.neovide_opacity = 0.85
+	vim.g.neovide_opacity = 1
 end
 
 -- terraform

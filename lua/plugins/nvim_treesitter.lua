@@ -12,6 +12,8 @@ return {
 			"java",
 			"javascript",
 			"vimdoc",
+			"markdown",
+			"markdown_inline",
 		})
 		local config = require("nvim-treesitter")
 		config.setup({

@@ -1,12 +1,13 @@
 return {
 	"neovim/nvim-lspconfig",
-	dependencies = { "hrsh7th/nvim-cmp" },
+	dependencies = { "saghen/blink.cmp" },
+	--dependencies = { "hrsh7th/nvim-cmp" },
 	config = function()
 		-- blink
-		--local capabilities = require("blink.cmp").get_lsp_capabilities()
+		local capabilities = require("blink.cmp").get_lsp_capabilities()
 
 		-- nvim cmp
-		local capabilities = require("cmp_nvim_lsp").default_capabilities()
+		--local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 		-- local function installer(package_name)
 		-- 	local mr = require("mason-registry")
@@ -31,7 +32,7 @@ return {
 		--vim.lsp.config("ts_ls", { capabilities = capabilities })
 		vim.lsp.config("ruff", { capabilities = capabilities })
 		--vim.lsp.config("eslint", { capabilities = capabilities })
-		vim.lsp.config("ty", { capabilities = capabilities })
+		vim.lsp.config("ty", { capabilities = capabilities, settings = { ty = { diagnosticMode = "openFilesOnly" } } })
 		-- enabled lsp plugins
 		--vim.lsp.enable("lua_ls")
 		--vim.lsp.enable("jdtls")
