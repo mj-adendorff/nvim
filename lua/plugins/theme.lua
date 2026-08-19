@@ -41,30 +41,39 @@ return {
 	},
 	{
 		"nyoom-engineering/oxocarbon.nvim",
-		name = 'oxocarbon',
+		name = "oxocarbon",
 		lazy = false,
 		priority = 1000,
 	},
 	{
 		"rebelot/kanagawa.nvim",
-		name = 'kanagawa',
+		name = "kanagawa",
 		lazy = false,
 		priority = 1000,
 	},
 	{
-		'AlexvZyl/nordic.nvim',
+		"AlexvZyl/nordic.nvim",
 		name = "nordic",
 		lazy = false,
 		priority = 1000,
 	},
 	{
-		'AlexvZyl/default.nvim',
+		"AlexvZyl/default.nvim",
 		name = "default",
 		lazy = false,
 		priority = 1000,
 		config = function()
-			require('default').load()
-		end
+			require("default").load()
+		end,
+	},
+	{
+		"Aejkatappaja/cendre",
+		name = "cendre",
+		lazy = false,
+		priority = 1000,
+		config = function()
+			require("centre").load()
+		end,
 	},
 	{
 		"ellisonleao/gruvbox.nvim",
@@ -95,6 +104,6 @@ return {
 				dim_inactive = false,
 				transparent_mode = false,
 			})
-		end
-	}
+		end,
+	},
 }

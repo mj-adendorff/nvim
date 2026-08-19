@@ -26,7 +26,7 @@ vim.keymap.set("n", "<F1>", "<Nop>", { noremap = true, silent = true })
 -- if using neovide
 if vim.g.neovide then
 	-- vim.o.guifont = "0xProto Nerd Font Mono:h9"
-	vim.o.guifont = "ZedMono Nerd Font Mono"
+	vim.o.guifont = "ZedMono Nerd Font Mono:h11"
 	-- vim.o.guifont = "CaskaydiaCove Nerd Font Mono:h10"
 	vim.g.neovide_floating_shadow = true
 	vim.g.neovide_refresh_rate = 140
