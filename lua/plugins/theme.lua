@@ -30,6 +30,11 @@ return {
 		"mj-adendorff/onedark.nvim",
 		lazy = false,
 		name = "onedark",
+		config = function()
+			require("onedark").setup({
+				style = "deep",
+			})
+		end,
 		priority = 1000,
 	},
 	{
@@ -72,7 +77,7 @@ return {
 		lazy = false,
 		priority = 1000,
 		config = function()
-			require("centre").load()
+			require("cendre").load()
 		end,
 	},
 	{
