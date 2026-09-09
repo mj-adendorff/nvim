@@ -9,6 +9,17 @@ return {
 			"theHamsta/nvim-dap-virtual-text",
 		},
 		enabled = true,
+		ft = { "python", "c", "cpp" },
+		keys = {
+			{ "<leader>db", desc = "Debug: Toggle breakpoint" },
+			{ "<leader>dt", desc = "Debug: Run test method" },
+			{ "<leader>dc", desc = "Debug: Continue/Start" },
+			{ "<leader>do", desc = "Debug: Step over" },
+			{ "<leader>di", desc = "Debug: Step into" },
+			{ "<leader>dO", desc = "Debug: Step out" },
+			{ "<leader>dq", desc = "Debug: Terminate" },
+			{ "<leader>du", desc = "Debug: Toggle DAP UI" },
+		},
 		config = function()
 			local dap = require("dap")
 			local dapui = require("dapui")

@@ -1,7 +1,6 @@
 return {
 	"nvimdev/lspsaga.nvim",
 	enabled = true,
-	lazy = false,
 	opts = {
 		symbol_in_winbar = {
 			enabled = false,

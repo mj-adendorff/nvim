@@ -1,7 +1,18 @@
 return {
 	{
+		-- Bearded Theme: generated Neovim plugin from the VS Code/Zed repo.
+		-- lazy.nvim loads it on demand when a bearded-theme-* colorscheme is requested.
+		dir = vim.fn.expand("~/Code/theme/bearded-theme/dist/neovim"),
+		name = "bearded-theme",
+		lazy = true,
+		priority = 1000,
+		config = function()
+			require("bearded-theme").setup({})
+		end,
+	},
+	{
 		"folke/tokyonight.nvim",
-		lazy = false,
+		lazy = true,
 		priority = 1000,
 		enabled = true,
 		config = function()
@@ -13,22 +24,25 @@ return {
 		"tiagovla/tokyodark.nvim",
 		lazy = false,
 		priority = 1000,
+		config = function()
+			vim.cmd.colorscheme("tokyodark")
+		end,
 	},
 	{
 		"shatur/neovim-ayu",
-		lazy = false,
+		lazy = true,
 		name = "ayu",
 		priority = 1000,
 	},
 	{
 		"darianmorat/gruvdark.nvim",
-		lazy = false,
+		lazy = true,
 		name = "gruvdark",
 		priority = 1000,
 	},
 	{
 		"mj-adendorff/onedark.nvim",
-		lazy = false,
+		lazy = true,
 		name = "onedark",
 		config = function()
 			require("onedark").setup({
@@ -40,32 +54,32 @@ return {
 	{
 		"catppuccin/nvim",
 		name = "catpuccin",
-		lazy = false,
+		lazy = true,
 		priority = 1000,
 		transparent_background = true,
 	},
 	{
 		"nyoom-engineering/oxocarbon.nvim",
 		name = "oxocarbon",
-		lazy = false,
+		lazy = true,
 		priority = 1000,
 	},
 	{
 		"rebelot/kanagawa.nvim",
 		name = "kanagawa",
-		lazy = false,
+		lazy = true,
 		priority = 1000,
 	},
 	{
 		"AlexvZyl/nordic.nvim",
 		name = "nordic",
-		lazy = false,
+		lazy = true,
 		priority = 1000,
 	},
 	{
 		"AlexvZyl/default.nvim",
 		name = "default",
-		lazy = false,
+		lazy = true,
 		priority = 1000,
 		config = function()
 			require("default").load()
@@ -74,7 +88,7 @@ return {
 	{
 		"Aejkatappaja/cendre",
 		name = "cendre",
-		lazy = false,
+		lazy = true,
 		priority = 1000,
 		config = function()
 			require("cendre").load()

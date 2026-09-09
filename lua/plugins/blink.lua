@@ -6,6 +6,7 @@ return {
 		"onsails/lspkind.nvim",
 	},
 	enabled = true,
+	event = { "InsertEnter", "CmdlineEnter" },
 	build = function()
 		require("blink.cmp").build():pwait()
 	end,
@@ -123,7 +124,7 @@ return {
 		-- You may use a lua implementation instead by using `implementation = "lua"`
 		-- See the fuzzy documentation for more information
 		fuzzy = {
-			implementation = "lua",
+			implementation = "prefer_rust_with_warning",
 			sorts = {
 				"exact",
 				"score",

@@ -16,7 +16,7 @@ return {
 		config.shortcut = {
 			{
 				desc = "󰠮  Load Saved Session ",
-				action = "AutoSession resote",
+				action = "AutoSession restore",
 				group = "@string",
 				key = "l",
 			},

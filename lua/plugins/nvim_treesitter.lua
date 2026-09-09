@@ -1,24 +1,14 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
 	build = ":TSUpdate",
+	event = { "BufReadPost", "BufNewFile" },
 	config = function()
-		require("nvim-treesitter").install({
-			"lua",
-			"c",
-			"go",
-			"toml",
-			"python",
-			"rust",
-			"java",
-			"javascript",
-			"vimdoc",
-			"markdown",
-			"markdown_inline",
-		})
-		local config = require("nvim-treesitter")
-		config.setup({
-			-- highlight = { enable = true },
-			-- indent = { enable = true },
+		require("nvim-treesitter").setup()
+		-- main branch no longer starts highlighting; do it per-buffer
+		vim.api.nvim_create_autocmd("FileType", {
+			callback = function(args)
+				pcall(vim.treesitter.start, args.buf)
+			end,
 		})
 	end,
 }

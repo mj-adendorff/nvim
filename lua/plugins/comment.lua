@@ -1,9 +1,13 @@
 return {
-	'numToStr/Comment.nvim',
+	"numToStr/Comment.nvim",
+	keys = {
+		{ "gc", mode = { "n", "x", "o" }, desc = "Comment linewise" },
+		{ "gb", mode = { "n", "x", "o" }, desc = "Comment blockwise" },
+	},
 	opts = {
 		-- add any options here
 	},
 	config = function()
-		require('Comment').setup()
-	end
+		require("Comment").setup()
+	end,
 }

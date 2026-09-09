@@ -3,6 +3,13 @@ return {
 		{
 			"nvim-telescope/telescope.nvim",
 			dependencies = { "nvim-lua/plenary.nvim" },
+			cmd = "Telescope",
+			keys = {
+				{ "<leader><leader>", desc = "Find Files" },
+				{ "<leader>/", desc = "Live grep" },
+				{ "<leader>bb", desc = "Find buffers" },
+				{ "<leader>bg", desc = "Git files" },
+			},
 			config = function()
 				local builtin = require("telescope.builtin")
 				vim.keymap.set("n", "<leader><leader>", builtin.find_files, { desc = "Find Files" })
@@ -15,6 +22,7 @@ return {
 		},
 		{
 			"nvim-telescope/telescope-ui-select.nvim",
+			event = "VeryLazy",
 			config = function()
 				require("telescope").setup({
 					defaults = {
@@ -44,5 +52,8 @@ return {
 	{
 		"nvim-telescope/telescope-fzf-native.nvim",
 		build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release",
+		-- nothing in this config calls load_extension("fzf") yet, so this
+		-- was never actually wired up; lazy=true until it is
+		lazy = true,
 	},
 }

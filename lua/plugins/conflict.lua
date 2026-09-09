@@ -1,5 +1,6 @@
 return {
 	"niekdomi/conflict.nvim",
+	event = { "BufReadPre", "BufNewFile" },
 	config = function()
 		require("conflict").setup({
 			default_mappings = {
