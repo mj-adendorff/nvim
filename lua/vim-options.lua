@@ -12,6 +12,9 @@ vim.cmd("autocmd FileType python setlocal noexpandtab")
 vim.cmd("set mousescroll=ver:10")
 vim.cmd("set noswapfile")
 
+-- Escape terminal mode
+vim.keymap.set("t", "<M-Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
+
 -- session options
 vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 
@@ -94,7 +97,9 @@ vim.keymap.set("n", "<M-2>", ":tabn 2<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<M-3>", ":tabn 3<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<M-4>", ":tabn 4<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<M-5>", ":tabn 5<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<M-t>", ":tab split<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<M-t>", ":tab split<CR>:terminal<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<M-c>", ":tab split<CR>:terminal claude<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<M-n>", ":tab split<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<M-x>", ":tabclose<CR>", { noremap = true, silent = true })
 
 -- visual mode stuff
