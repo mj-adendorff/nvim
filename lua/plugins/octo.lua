@@ -6,6 +6,13 @@ return {
 		picker = "telescope",
 		-- bare Octo command opens picker of commands
 		enable_builtin = true,
+		default_merge_method = "squash",
+		default_delete_branch = true,
+		mappings = {
+			pull_request = {
+				merge_pr = { lhs = "<localleader>pm", desc = "merge PR (squash)" },
+			},
+		},
 	},
 	keys = {
 		{

@@ -15,6 +15,12 @@ vim.cmd("set noswapfile")
 -- Escape terminal mode
 vim.keymap.set("t", "<M-Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
+-- Terminal buffers: always land in terminal mode, no `i` needed
+vim.api.nvim_create_autocmd({ "TermOpen", "BufEnter" }, {
+	pattern = "term://*",
+	command = "startinsert",
+})
+
 -- session options
 vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 
@@ -92,15 +98,27 @@ vim.keymap.set("n", "<leader>h", ":split<CR>", { noremap = true, silent = true }
 vim.keymap.set("n", "<leader>v", ":vsplit<CR>", { noremap = true, silent = true })
 
 --- tabs
-vim.keymap.set("n", "<M-1>", ":tabn 1<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<M-2>", ":tabn 2<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<M-3>", ":tabn 3<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<M-4>", ":tabn 4<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<M-5>", ":tabn 5<CR>", { noremap = true, silent = true })
+vim.keymap.set({ "n", "t" }, "<M-1>", "<Cmd>tabn 1<CR>", { noremap = true, silent = true })
+vim.keymap.set({ "n", "t" }, "<M-2>", "<Cmd>tabn 2<CR>", { noremap = true, silent = true })
+vim.keymap.set({ "n", "t" }, "<M-3>", "<Cmd>tabn 3<CR>", { noremap = true, silent = true })
+vim.keymap.set({ "n", "t" }, "<M-4>", "<Cmd>tabn 4<CR>", { noremap = true, silent = true })
+vim.keymap.set({ "n", "t" }, "<M-5>", "<Cmd>tabn 5<CR>", { noremap = true, silent = true })
+vim.keymap.set({ "n", "t" }, "<M-p>", "<Cmd>tabp<CR>", { noremap = true, silent = true })
+vim.keymap.set({ "n", "t" }, "<M-n>", "<Cmd>tabn<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<M-->", ":-tabmove<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<M-=>", ":+tabmove<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<M-t>", ":tab split<CR>:terminal<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<M-c>", ":tab split<CR>:terminal claude<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<M-n>", ":tab split<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<M-x>", ":tabclose<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<M-a>", ":tab split<CR>:terminal claude<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<M-j>", ":tab split<CR>:terminal lazyjira<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<M-d>", ":tab split<CR>:terminal lazydocker<CR>", { noremap = true, silent = true })
+vim.keymap.set(
+	"n",
+	"<M-q>",
+	':tab split<CR>:terminal bash -c "cd ~/Code/quicklysign-tui && cargo run"<CR>',
+	{ noremap = true, silent = true }
+)
+vim.keymap.set("n", "<M-c>", ":tab split<CR>", { noremap = true, silent = true })
+vim.keymap.set({ "n", "t" }, "<M-x>", "<Cmd>tabclose<CR>", { noremap = true, silent = true })
 
 -- visual mode stuff
 vim.keymap.set("v", "<", "<gv", { desc = "Indent left" })
