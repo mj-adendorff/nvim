@@ -79,6 +79,7 @@ return {
 	-- present at startup to take over directory buffers (`nvim .`). Loading it
 	-- later hijacks the already-open directory buffer out from under the sidebar.
 	lazy = false,
+	enabled = false,
 	keys = {
 		{
 			"<leader>e",
