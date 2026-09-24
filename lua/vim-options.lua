@@ -50,7 +50,7 @@ if vim.g.neovide then
 	vim.api.nvim_set_keymap("i", "<sc-v>", '<ESC>l"+Pli', { noremap = true })
 	vim.api.nvim_set_keymap("t", "<sc-v>", '<C-\\><C-n>"+Pi', { noremap = true })
 	-- transparency
-	vim.g.neovide_opacity = 1
+	vim.g.neovide_opacity = 0.9
 end
 
 -- terraform
@@ -107,8 +107,8 @@ vim.keymap.set({ "n", "t" }, "<M-p>", "<Cmd>tabp<CR>", { noremap = true, silent 
 vim.keymap.set({ "n", "t" }, "<M-n>", "<Cmd>tabn<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<M-->", ":-tabmove<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<M-=>", ":+tabmove<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<M-t>", ":tab split<CR>:terminal<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<M-a>", ":tab split<CR>:terminal claude<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<M-t>", ":tabnew<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<M-a>", ":tab split<CR>:terminal<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<M-j>", ":tab split<CR>:terminal lazyjira<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<M-d>", ":tab split<CR>:terminal lazydocker<CR>", { noremap = true, silent = true })
 vim.keymap.set(
@@ -117,7 +117,7 @@ vim.keymap.set(
 	':tab split<CR>:terminal bash -c "cd ~/Code/quicklysign-tui && cargo run"<CR>',
 	{ noremap = true, silent = true }
 )
-vim.keymap.set("n", "<M-c>", ":tab split<CR>", { noremap = true, silent = true })
+--vim.keymap.set("n", "<M-c>", ":tab split<CR>", { noremap = true, silent = true })
 vim.keymap.set({ "n", "t" }, "<M-x>", "<Cmd>tabclose<CR>", { noremap = true, silent = true })
 
 -- visual mode stuff
