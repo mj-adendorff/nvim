@@ -39,18 +39,16 @@ if vim.g.neovide then
 	-- vim.o.guifont = "CaskaydiaCove Nerd Font Mono:h10"
 	vim.g.neovide_floating_shadow = true
 	vim.g.neovide_refresh_rate = 140
-	vim.keymap.set({ "n", "x" }, "<C-S-C>", '"+y', { desc = "Copy system clipboard" })
-	vim.keymap.set({ "n", "x" }, "<C-S-V>", '"+p', { desc = "Paste system clipboard" })
 	vim.g.neovide_input_use_logo = 1
 	vim.api.nvim_set_keymap("v", "<sc-c>", '"+y', { noremap = true })
 	vim.api.nvim_set_keymap("n", "<sc-v>", 'l"+P', { noremap = true })
 	vim.api.nvim_set_keymap("v", "<sc-v>", '"+P', { noremap = true })
 	-- vim.api.nvim_set_keymap("c", "<sc-v>", '<C-o>l<C-o>"+<C-o>P<C-o>l', { noremap = true })
-	vim.api.nvim_set_keymap("c", "<sc-v>", "<C-R>0", { noremap = true })
-	vim.api.nvim_set_keymap("i", "<sc-v>", '<ESC>l"+Pli', { noremap = true })
+	vim.api.nvim_set_keymap("c", "<sc-v>", "<C-R>+", { noremap = true })
+	vim.api.nvim_set_keymap("i", "<sc-v>", "<C-R><C-O>+", { noremap = true })
 	vim.api.nvim_set_keymap("t", "<sc-v>", '<C-\\><C-n>"+Pi', { noremap = true })
 	-- transparency
-	vim.g.neovide_opacity = 0.9
+	vim.g.neovide_opacity = 0.93
 end
 
 -- terraform
