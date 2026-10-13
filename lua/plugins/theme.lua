@@ -5,6 +5,7 @@ return {
 		dir = vim.fn.expand("~/Code/theme/bearded-theme/dist/neovim"),
 		name = "bearded-theme",
 		lazy = true,
+		enabled = false,
 		priority = 1000,
 		config = function()
 			require("bearded-theme").setup({})
@@ -61,6 +62,9 @@ return {
 	{
 		"nyoom-engineering/oxocarbon.nvim",
 		name = "oxocarbon",
+		-- Ships a rockspec; skip lazy's luarocks build (hererocks Lua 5.1 isn't
+		-- installed, which made the build fail and retry on every startup).
+		build = false,
 		lazy = true,
 		priority = 1000,
 	},
