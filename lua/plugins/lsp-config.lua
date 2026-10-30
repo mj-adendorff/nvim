@@ -31,9 +31,15 @@ return {
 		--vim.lsp.config("jdtls", { capabilities = capabilities })
 		--vim.lsp.config("lua_ls", { capabilities = capabilities })
 		--vim.lsp.config("ts_ls", { capabilities = capabilities })
-		vim.lsp.config("ruff", { capabilities = capabilities })
+		-- Pin the NixOS binaries: swenv puts the venv's bin/ first on PATH, and its
+		-- pip-wheel ruff/ty can't run on NixOS.
+		vim.lsp.config("ruff", { capabilities = capabilities, cmd = { "/run/current-system/sw/bin/ruff", "server" } })
 		--vim.lsp.config("eslint", { capabilities = capabilities })
-		vim.lsp.config("ty", { capabilities = capabilities, settings = { ty = { diagnosticMode = "openFilesOnly" } } })
+		vim.lsp.config("ty", {
+			capabilities = capabilities,
+			cmd = { "/run/current-system/sw/bin/ty", "server" },
+			settings = { ty = { diagnosticMode = "openFilesOnly" } },
+		})
 		-- enabled lsp plugins
 		--vim.lsp.enable("lua_ls")
 		--vim.lsp.enable("jdtls")
@@ -41,6 +47,24 @@ return {
 		--vim.lsp.enable("ts_ls")
 		--vim.lsp.enable("basedpyright")
 		vim.lsp.enable("ty")
+
+		-- Neovim only clears a detaching client's push diagnostics; its pull
+		-- diagnostics linger while another pull client (ruff) stays attached, e.g.
+		-- the pre-venv ty's unresolved imports after swenv restarts it.
+		vim.api.nvim_create_autocmd("LspDetach", {
+			callback = function(ev)
+				local client = vim.lsp.get_client_by_id(ev.data.client_id)
+				if not client then
+					return
+				end
+				local prefix = "nvim.lsp." .. client.name .. "." .. client.id .. "."
+				for ns, meta in pairs(vim.diagnostic.get_namespaces()) do
+					if vim.startswith(meta.name, prefix) then
+						vim.diagnostic.reset(ns, ev.buf)
+					end
+				end
+			end,
+		})
 
 		-- svelte
 		vim.lsp.config("svelte", { capabilities = capabilities })

@@ -3,8 +3,6 @@ return {
 	dependencies = { "nvim-lua/plenary.nvim" },
 	ft = "python",
 	config = function()
-		local api = require("swenv.api")
-
 		local function poetry_entry(path)
 			return {
 				name = "poetry (" .. vim.fn.fnamemodify(vim.fn.getcwd(), ":t") .. ")",
@@ -25,12 +23,13 @@ return {
 			return nil
 		end
 
-		-- Restart the Python LSPs so they pick up the new interpreter. By the time
-		-- the venv is set the LSP is usually already attached, so stopping alone
-		-- would leave the buffer without a server.
+		-- Restart the Python LSPs so they pick up the new interpreter. Keyed on the
+		-- config being enabled, not on a live client: get_clients() hides servers
+		-- still initializing, and a server whose binary lives in the venv only
+		-- becomes startable once the venv is on PATH.
 		local function restart_python_lsps()
 			for _, name in ipairs({ "pyright", "basedpyright", "ty" }) do
-				if #vim.lsp.get_clients({ name = name }) > 0 then
+				if vim.lsp.is_enabled(name) then
 					vim.lsp.enable(name, false)
 					vim.lsp.enable(name, true)
 				end
@@ -41,7 +40,7 @@ return {
 			-- Surface the poetry venv in the manual picker too, alongside the
 			-- normal scan results.
 			get_venvs = function(venvs_path)
-				local venvs = api.get_venvs(venvs_path)
+				local venvs = require("swenv.api").get_venvs(venvs_path)
 				local poetry = poetry_venv()
 				if poetry then
 					table.insert(venvs, 1, poetry)
@@ -53,6 +52,10 @@ return {
 				vim.notify("swenv: switched to " .. venv.name)
 			end,
 		})
+
+		-- swenv.api snapshots its settings table on first require, so requiring it
+		-- before setup() silently drops post_set_venv and get_venvs.
+		local api = require("swenv.api")
 
 		-- Auto-select this project's poetry venv as soon as a python file is
 		-- opened, no picker needed. Runs in the background: `poetry env info`

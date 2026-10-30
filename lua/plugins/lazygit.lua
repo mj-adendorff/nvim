@@ -15,4 +15,7 @@ return {
 	keys = {
 		{ "<leader>gg", "<cmd>LazyGit<cr>", desc = "LazyGit" },
 	},
+	config = function()
+		vim.g.lazygit_worktree_aware = 1
+	end,
 }
